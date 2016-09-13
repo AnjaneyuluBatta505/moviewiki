@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import TemplateView
-
+from wiki.models import Person
 # Create your views here.
 
 
@@ -15,8 +15,10 @@ class MovieView(TemplateView):
     template_name = "movie.html"
 
 
-class PersonView(TemplateView):
+class PersonView(DetailView):
     template_name = "person.html"
+    model = Person
+    slug_field = "slug"
 
 
 class SongView(TemplateView):

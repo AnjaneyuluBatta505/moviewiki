@@ -9,6 +9,7 @@ class Person(models.Model):
     slug = models.SlugField(max_length=80, unique=True)
     gender = models.CharField(choices=GENDER, max_length=100, null=True, blank=True)
     dob = models.DateField(null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
     languages_known = models.CharField(max_length=100, null=True, blank=True)
     height = models.CharField(max_length=100, null=True, blank=True)
     biography = models.TextField(null=True, blank=True)
@@ -61,7 +62,7 @@ class Award(models.Model):
     category = models.CharField(max_length=150)
     movie = models.ForeignKey(Movie)
     status = models.CharField(choices=AWARD_STATUS, max_length=50)
-    awardee = models.ForeignKey(Person, null=True, blank=True)
+    awardee = models.ForeignKey(Person, null=True, blank=True, related_name="awards")
     updated_on = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
