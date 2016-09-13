@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} Movie Box {% endblock %}</title>
+  {% block seo_meta %}{% endblock %}
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{%static 'css/main.css' %}">
+</head>
+<body>
+<!-- navigation -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="col-md-2">
+          <a class="navbar-brand" href="#">Movie-Box</a>
+        </div>
+        <div class="col-md-10">
+          <form class="search-bar">
+              <input type="text" placeholder=" serach for movies, actors, songs, technicians, etc. " required class="search">
+              <button type="submit">Go</button>
+            </form>
+        </div>
+      </div>
+    </nav>
+<!-- end -->
+  <div class="container-fluid menu-bar">
+  	<div class="google-text-links">
+      {% block google_ads %}
+        google text links
+      {% endblock %}
+    </div>
+    {% block content %}
+    {% endblock %}
+  	<div class="col-md-4 advertisement">
+      {% block advertisement %}
+      {% endblock %}
+		</div>
+  </div>
+  <footer class="footer">
+    <div class="container-fluid">
+      <p class="text-muted text-center">&copy; 2016 movie-box.com </p>
+    </div>
+  </footer>
+<!-- end nav -->
+<!-- javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{% block javascript %}
+{% endblock %}
+</body>
+</html>

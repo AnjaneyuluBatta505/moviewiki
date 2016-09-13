@@ -1,0 +1,267 @@
+body{
+  padding:0px;
+  margin:0px;
+  font-size: 14px;
+  background-color: #f3f3f3;
+  color: #212121;
+  line-height: 1.4;
+}
+img {
+  width:100%;
+  height:100%;
+}
+h1, h2, h3, h4, h5  {
+    padding: 1px; 
+    font-size: 20px;
+    margin: 0px;
+    text-align:center;
+}
+body > .menu-bar{
+  padding:0px;
+  padding-top: 60px;
+  margin:0px;
+}
+table tr:hover{
+  background: #fff;
+}
+.carousel .item { height: 410px; }
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+  padding:2px;
+  border: 1px solid #bcd9e7;
+}
+.normal{
+	padding: 0px;
+	margin: 0px;
+}
+/* search */
+form.search-bar {
+  padding: 10px;
+}
+.search-bar input[type="text"]{
+  width: 50%;
+  height: 27px;
+  margin-left: 20px;
+  border-radius: 0px;
+  box-shadow: none;
+  border: 1px solid #C2B3B3;
+}
+.search-bar button[type="submit"]{
+  background: #fafafa;
+  border: 1px solid #a9a9a9;
+  height: 27px;
+  margin-left: -5px;
+}
+a.navbar-brand{
+  font-size: 26px;
+  color: #75999b !important;
+}
+a.btn{
+    color: #fff;
+    background-color: #4f5850;
+    font-weight: 800;
+}
+a.btn:hover{
+  color:#4CAF50;
+}
+/* cmmon classes */
+.text-center{
+  text-align: center;
+}
+.load-more{
+  padding: 5x;
+}
+.load-more .btn-block{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.navbar-fixed-top{
+  padding: 5px;
+}
+.movies{
+  background: #f3f3f3;
+  display: inline-block;
+  padding: 0px;
+}
+.movies span.more{
+  width: 50px;
+  height:20px;
+  border:1 px solid red;
+}
+.movie{
+  border: 1px solid #cecece;
+  padding: 2px;
+}
+.movie img{
+  background: #fff;
+  padding: 5px;
+  width:100%;
+  height:250px;
+}
+.movie img:hover{
+  border: 1px solid #673AB7;
+}
+.title-hover{
+  background-color: #fff;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    width: 100%;
+    height: 500px;
+}
+.movie-team {
+    width: 100%;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    color: #212121;
+    font-weight: 600;
+}
+.movie-team-title{
+      padding: 5px;
+}
+.single-effect {
+  position: relative;
+  width: 269px;
+  height: 175px;
+  display: inline-block;
+  margin: 3px;
+}
+.single-effect .team-member img{
+  width: 100%;
+  height: 175px;
+}
+.single-effect .view-caption{
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  top: 66%;
+  left: 0px;
+  color: #ffffff;
+  background: #3b3f3f;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.single-effect .team-member:hover {
+  border: 1px solid #7ccbec;
+}
+.single-effect .team-member:hover .view-caption{
+  display: block;
+}
+.actors_technicians .biography{
+    font-weight: 300;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.biography:hover{
+  background: #fff;
+}
+/* songs */
+.movie-songs {
+    margin-top: 15px;
+    width: 100%;
+    line-height: 1.828571;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    color: #212121;
+    font-weight: 600;
+}
+.song-effect {
+  position: relative;
+  width: 159px;
+  height: 115px;
+  display: inline-block;
+  margin: 3px;
+}
+.song-effect .team-member img{
+  width: 100%;
+  height: 115px;
+}
+.song-effect .view-caption{
+  cursor: pointer;
+  vertical-align: middle;
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 48%;
+  left: 0px;
+  color: #ffffff;
+  background: #3b3f3f;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.song-effect .team-member:hover {
+  border: 1px solid #7ccbec;
+}
+.song-effect .team-member:hover .view-caption{
+  display: block;
+}
+/* song */
+.song-image {
+	padding: 0px;
+	margin: 0px;
+	border-radius: 3px;
+}
+.song-image:hover {
+    padding: 1px;
+	border: 1px solid #428bca;
+}
+.song-details tr:hover{
+	background-color: #fff;
+}
+.movie-team .song-lirics{
+	padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+.song-lirics{
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    font-size: 15px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+.song-lirics:hover{
+	background-color: #fff;
+}
+/* profile*/
+.personal-poster img{
+  width: 100%;
+  height:100%;
+}
+
+.footer{
+  background-color: #3b3f3f;
+}
+/* advertisement */
+.advertisement {
+  padding:0px;
+  margin:0px;
+  display: inline-block
+}
+.advertisement .container{
+  background: #fff;
+  margin-left: 10px;
+  width: 97.8%;
+}
+.advertisement img{
+  width: 100%;
+  height: 100%;
+}
+/* google adds */
+.google-text-links{
+  background: #fff;
+  text-align: center;
+  margin: 5px 0 5px 0;
+  padding: 3px;
+}
