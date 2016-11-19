@@ -13,7 +13,7 @@ SECRET_KEY = '=w9cd+v^=+pg3tq3m!jje31=71ha-%rg*nx%0smadr5-pilobm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cinema-wiki.herokuapp.com']
 
 
 # Application definition
