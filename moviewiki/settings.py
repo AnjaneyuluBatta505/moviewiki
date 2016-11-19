@@ -63,18 +63,28 @@ WSGI_APPLICATION = 'moviewiki.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'moviewiki',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+if DEBUG == False:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'do20lc3jghogg',
+            'USER': 'piyhmusixzjwhr',
+            'PASSWORD': '5FUjmfnY8btrHG0jMLainNWdWx',
+            'HOST': 'ec2-54-83-59-110.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'moviewiki',
+            'USER': 'postgres',
+            'PASSWORD': 'root',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
