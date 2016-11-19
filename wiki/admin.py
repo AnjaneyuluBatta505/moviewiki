@@ -15,12 +15,19 @@ admin.site.site_title = "MovieBox"
 admin.site.index_title = "Update Movie Data"
 
 
+class ImagesInline(admin.TabularInline):
+    model = ImageURL
+    fields = ("url", "alternate_text",)
+    extra = 1
+
+
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ['name', 'biography']
     list_filter = ('updated_on',)
     ordering = ('name',)
     exclude = ("updated_on",)
+    inlines = [ImagesInline]
 
     class Media:
         js = (
@@ -36,6 +43,7 @@ class MovieAdmin(admin.ModelAdmin):
     list_filter = ('genre', 'title', 'updated_on', 'released_on')
     ordering = ('released_on',)
     exclude = ("updated_on",)
+    inlines = [ImagesInline]
 
     class Media:
         js = (

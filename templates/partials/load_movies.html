@@ -1,0 +1,6 @@
+{% for movie in movie_list %}
+  <!-- movie -->
+  <div class="col-md-4 movie">
+    <a href="{% url 'wiki:movie' slug=movie.slug %}"><img src="{{ movie.image }}"></a>
+  </div>
+{% endfor %}

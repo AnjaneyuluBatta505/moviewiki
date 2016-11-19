@@ -18,6 +18,12 @@ class Person(models.Model):
     role = models.CharField(max_length=100, null=True, blank=True)
     updated_on = models.DateTimeField(default=timezone.now)
 
+    def images(self):
+        return ImageURL.objects.filter(person_id=self.id)
+
+    def related_persons(self):
+        return self.__class__.objects.all()
+
     def __str__(self):
         return self.name
 
@@ -27,12 +33,21 @@ class Movie(models.Model):
     slug = models.SlugField(max_length=80, unique=True)
     released_on = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
+    language = models.CharField(max_length=100, null=True, blank=True)
     budget = models.CharField(max_length=100, null=True, blank=True)
     box_office = models.CharField(max_length=100, null=True, blank=True)
     rating = models.CharField(max_length=100, null=True, blank=True)
     rating = models.CharField(max_length=100, null=True, blank=True)
     genre = models.CharField(choices=MOVIE_GENRE, max_length=100, null=True, blank=True)
     updated_on = models.DateTimeField(default=timezone.now)
+    image = models.URLField()
+    team = models.ManyToManyField(Person, related_name="movies")
+
+    def images(self):
+        return ImageURL.objects.filter(movie_id=self.id)
+
+    def related_movies(self):
+        return self.__class__.objects.all()
 
     def __str__(self):
         return self.title
@@ -44,12 +59,13 @@ class Movie(models.Model):
 class Song(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=80, unique=True)
-    music_director = models.ForeignKey(Person, blank=True, null=True, related_name="songs"),
+    music_directors = models.ManyToManyField(Person, blank=True, null=True, related_name="songs"),
     singers = models.ManyToManyField(Person, blank=True, related_name="all_songs")
-    writers = models.ForeignKey(Person, blank=True, null=True, related_name="get_songs")
+    writers = models.ManyToManyField(Person, blank=True, null=True, related_name="get_songs")
     lyrics = models.TextField(null=True, blank=True)
-    movie = models.ForeignKey(Movie, null=True, blank=True)
+    movie = models.ForeignKey(Movie, null=True, blank=True, related_name="related_songs")
     updated_on = models.DateTimeField(default=timezone.now)
+    image = models.URLField()
 
     def __str__(self):
         return self.title
@@ -64,6 +80,7 @@ class Award(models.Model):
     status = models.CharField(choices=AWARD_STATUS, max_length=50)
     awardee = models.ForeignKey(Person, null=True, blank=True, related_name="awards")
     updated_on = models.DateTimeField(default=timezone.now)
+    image = models.URLField()
 
     def __str__(self):
         return self.title
