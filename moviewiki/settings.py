@@ -63,7 +63,7 @@ WSGI_APPLICATION = 'moviewiki.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-if DEBUG == False:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
