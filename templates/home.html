@@ -43,4 +43,17 @@
 
   });
 </script>
+<!-- seo -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% url 'wiki:search' %}?q={query}",
+    "query-input": "required name=query"
+  }
+}
+</script>
 {% endblock %}

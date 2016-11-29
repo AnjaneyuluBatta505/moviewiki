@@ -109,7 +109,9 @@
           		<!-- movie -->
           		<div class="song-effect">
 	              <figure class="team-member">
-	                <a href="{%url 'wiki:movie' slug=rmovie.slug %}"><img src="{{ rmovie.image }}" alt="{{ rmovie }} movie details & team"></a>
+	                <a href="{%url 'wiki:movie' slug=rmovie.slug %}">
+                    <img src="{{ rmovie.image }}" alt="{{ rmovie }} movie details & team">
+                  </a>
 	                <figcaption class="view-caption">
 	                  <div class="info">
 	                    <p><a href="{%url 'wiki:movie' slug=rmovie.slug %}">View Movie {{ rmovie }}</a></p>
@@ -133,5 +135,60 @@
 $(document).ready(function(){
      $("#myCarousel").carousel();
 });
+</script>
+<!-- seo -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Movie",
+  "actor": [
+    {
+      "@type": "Person",
+      "name": "Johnny Depp"
+    },
+    {
+      "@type": "Person",
+      "name": "Penelope Cruz"
+    },
+    {
+      "@type": "Person",
+      "name": "Ian McShane"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "bestRating": "10",
+    "ratingCount": "200",
+    "ratingValue": "8",
+    "reviewCount": "50"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Ted Elliott"
+    },
+    {
+      "@type": "Person",
+      "name": "Terry Rossio"
+    }
+  ],
+  "description": "Jack Sparrow and Barbossa embark on a quest to find the elusive fountain of youth, only to discover that Blackbeard and his daughter are after it too.",
+  "director": {
+    "@type": "Person",
+    "name": "Rob Marshall"
+  },
+  "name": "Pirates of the Carribean: On Stranger Tides (2011)",
+  "image": {
+    "@context": "http://schema.org",
+    "@type": "ImageObject",
+    "author": "Jane Doe",
+    "contentLocation": "Puerto Vallarta, Mexico",
+    "url": "http://hello.com/mexico-beach.jpg",
+    "datePublished": "2008-01-25",
+    "description": "I took this picture while on vacation last year.",
+    "name": "Beach in Mexico"
+  },
+  "dateCreated": "2008-01-25"
+}
 </script>
 {% endblock %}
