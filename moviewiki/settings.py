@@ -63,10 +63,10 @@ WSGI_APPLICATION = 'moviewiki.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'do20lc3jghogg',
             'USER': 'piyhmusixzjwhr',
             'PASSWORD': '5FUjmfnY8btrHG0jMLainNWdWx',
@@ -118,6 +118,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+APPEND_SLASH = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -128,4 +129,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-DATABASES['default'] = dj_database_url.config()
+
+if not DEBUG:
+    DATABASES['default'] = dj_database_url.config()

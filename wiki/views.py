@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.base import TemplateView
 from wiki.models import Person, Movie, Song
 # Create your views here.
 
@@ -36,3 +37,29 @@ class SongView(DetailView):
     template_name = "song.html"
     model = Song
     slug_field = "slug"
+
+
+class PrivacyPolicyView(TemplateView):
+    template_name = "privacy-policy.html"
+
+
+class TermsConditionsView(TemplateView):
+    template_name = "terms-conditions.html"
+
+
+class ContactUsView(TemplateView):
+    template_name = "contact-us.html"
+
+
+class AboutUsView(TemplateView):
+    template_name = "about-us.html"
+
+
+class SitemapView(TemplateView):
+    template_name = "sitemap.xml"
+    content_type = "application/xml"
+
+
+class RobotsView(TemplateView):
+    template_name = "robots.txt"
+    content_type = "text"

@@ -1,10 +1,17 @@
 from django.conf.urls import url
-from wiki.views import HomeView, MovieView, PersonView, SongView, SearchView
+from wiki import views
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view(), name="home"),
-    url(r'^search/$', SearchView.as_view(), name="search"),
-    url(r'^(?P<slug>\w+)-movie-details-star-casting-team/$', MovieView.as_view(), name="movie"),
-    url(r'^(?P<slug>\w+)-movies-awards-biography/$', PersonView.as_view(), name="person"),
-    url(r'^(?P<slug>\w+)-song-details-lyrics-(?P<movie_slug>\w+)/$', SongView.as_view(), name="song"),
+    url(r'^$', views.HomeView.as_view(), name="home"),
+    url(r'^search/$', views.SearchView.as_view(), name="search"),
+    url(r'^(?P<slug>.+)-movie-details-star-casting-team/$', views.MovieView.as_view(), name="movie"),
+    url(r'^(?P<slug>.+)-movies-awards-biography/$', views.PersonView.as_view(), name="person"),
+    url(r'^(?P<slug>.+)-song-details-lyrics-(?P<movie_slug>\w+)/$', views.SongView.as_view(), name="song"),
+    url(r'^privacy-policy/$', views.PrivacyPolicyView.as_view(), name="privacy_policy"),
+    url(r'^terms-conditions/$', views.TermsConditionsView.as_view(), name="terms_conditions"),
+    url(r'^contact-us/$', views.ContactUsView.as_view(), name="contact_us"),
+    url(r'^about-us/$', views.AboutUsView.as_view(), name="about_us"),
+    url(r'^sitemap\.xml$', views.SitemapView.as_view(), name="sitemap"),
+    url(r'^robots\.txt$', views.RobotsView.as_view(), name="robots"),
+
 ]

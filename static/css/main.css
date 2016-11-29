@@ -273,3 +273,18 @@ a.btn:hover{
   margin: 5px 0 5px 0;
   padding: 3px;
 }
+footer ul {
+  list-style-type: none;
+  margin: 0 25% 0 25%;
+  padding: 0;
+  overflow: hidden;
+}
+footer ul li {
+  float: left;
+}
+footer ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
