@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Cinema Wiki search</ShortName>
+  <Description> Search for content on CinemaWiki! </Description>
+  <Url type="text/html"
+    method="get"
+    template="https://cinema-wiki.herokuapp.com/search?q={searchTerms}&amp;utm_source=opensearch"/>
+</OpenSearchDescription>

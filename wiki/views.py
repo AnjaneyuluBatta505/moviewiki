@@ -64,6 +64,13 @@ class RobotsView(TemplateView):
     template_name = "robots.txt"
     content_type = "text"
 
+
 class GoogleSiteVerificationView(TemplateView):    
     template_name = "googlea95613a6b3c4ff8a.html"
     content_type = "text/plain"
+
+
+class BingSiteVerificationView(TemplateView):    
+    template_name = "BingSiteAuth.xml"
+    content_type = "application/xml"
+

@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^about-us/$', views.AboutUsView.as_view(), name="about_us"),
     url(r'^sitemap\.xml$', views.SitemapView.as_view(), name="sitemap"),
     url(r'^robots\.txt$', views.RobotsView.as_view(), name="robots"),
-
+    url(r'^BingSiteAuth\.xml$', views.BingSiteVerificationView.as_view(), name="bing_site_verify"),
 ]
