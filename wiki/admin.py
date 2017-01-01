@@ -10,9 +10,9 @@ admin.site.unregister(Group)
 # class CommentInline(admin.TabularInline):
 #     model = Comment
 
-admin.site.site_header = "MovieBox Administration"
-admin.site.site_title = "MovieBox"
-admin.site.index_title = "Update Movie Data"
+admin.site.site_header = "Cinima-Wiki Administration"
+admin.site.site_title = "Cinima-Wiki"
+admin.site.index_title = "Update Cinima-Wiki Data"
 
 
 class ImagesInline(admin.TabularInline):
