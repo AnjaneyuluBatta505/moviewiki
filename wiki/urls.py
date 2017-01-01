@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^sitemap\.xml$', views.SitemapView.as_view(), name="sitemap"),
     url(r'^robots\.txt$', views.RobotsView.as_view(), name="robots"),
     url(r'^BingSiteAuth\.xml$', views.BingSiteVerificationView.as_view(), name="bing_site_verify"),
+    url(r'^googlea95613a6b3c4ff8a\.html$', views.GoogleSiteVerificationView.as_view(), name="google_site_verify"),
+
 ]
