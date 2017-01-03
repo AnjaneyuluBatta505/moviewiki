@@ -74,13 +74,16 @@
   <div class="container-fluid menu-bar">
   	<div class="google-text-links">
       {% block google_ads %}
-        google text links
+        {% include 'adverts/top-text-links.html' %}
       {% endblock %}
     </div>
     {% block content %}
     {% endblock %}
   	<div class="col-md-4 advertisement">
       {% block advertisement %}
+        {% block google_advert %}
+          {% include 'adverts/right-rectangle.html' %}
+        {% endblock %}
       {% endblock %}
 		</div>
   </div>
