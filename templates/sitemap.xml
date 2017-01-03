@@ -3,9 +3,43 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>http://example.com/</loc>
-        <lastmod>2006-11-18</lastmod>
+        <loc>http://{{ request.get_host }}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
+        {% for movie in movies %}
+    	<loc>http://{{ request.get_host }}{{ movie.get_absolute_url }}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        {% endfor %}
+        {% for song in songs %}
+        <loc>http://{{ request.get_host }}{{ song.get_absolute_url }}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        {% endfor %}
+        {% for person in persons %}
+        <loc>http://{{ request.get_host }}{{ person.get_absolute_url }}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        {% endfor %}
+        <loc>http://{{ request.get_host }}{% url 'wiki:privacy_policy' %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        <loc>http://{{ request.get_host }}{% url 'wiki:terms_conditions' %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        <loc>http://{{ request.get_host }}{% url 'wiki:contact_us' %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        <loc>http://{{ request.get_host }}{% url 'wiki:about_us' %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
     </url>
 </urlset>

@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 from wiki.globals import MOVIE_GENRE, GENDER, AWARD_STATUS
 
 
@@ -23,6 +24,9 @@ class Person(models.Model):
 
     def related_persons(self):
         return self.__class__.objects.all()
+
+    def get_absolute_url(self):
+        return reverse("wiki:person", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.name
@@ -49,6 +53,9 @@ class Movie(models.Model):
     def related_movies(self):
         return self.__class__.objects.all()
 
+    def get_absolute_url(self):
+        return reverse("wiki:movie", kwargs={"slug": self.slug})
+
     def __str__(self):
         return self.title
 
@@ -66,6 +73,9 @@ class Song(models.Model):
     movie = models.ForeignKey(Movie, null=True, blank=True, related_name="related_songs")
     updated_on = models.DateTimeField(default=timezone.now)
     image = models.URLField()
+
+    def get_absolute_url(self):
+        return reverse("wiki:song", kwargs={"slug": self.slug, "movie_slug": self.movie.slug})
 
     def __str__(self):
         return self.title

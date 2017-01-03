@@ -59,6 +59,16 @@ class SitemapView(TemplateView):
     template_name = "sitemap.xml"
     content_type = "application/xml"
 
+    def get_context_data(self):
+        context = super(SitemapView, self).get_context_data()
+        context.update({
+            "movies": Movie.objects.all(),
+            "songs": Song.objects.all(),
+            "persons": Person.objects.all()
+        })
+        return context
+
+
 
 class RobotsView(TemplateView):
     template_name = "robots.txt"
