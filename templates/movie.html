@@ -1,4 +1,27 @@
 {% extends "base.html" %}
+{% block title %} {{ movie }} Details | Star casting | Team {% endblock %}
+{% block seo_meta %}
+  <meta name="keywords" content="{{ movie }}, cast and crew, star cast, {{ movie.language }} movie {{ movie }} actor, actress, director, producer, {{ movie }} music director, singers, playback singers, movie news, crew members">
+  <meta name="description" content="{{ movie.about }}">
+  <meta name="title" content="Cinema-Wiki">
+
+  <!-- twitter -->
+  <meta name="twitter:card" content="Cinema-Wiki" />
+  <meta name="twitter:site" content="@CinemaWiki" />
+  <meta name="twitter:creator" content="@CinemaWiki" />
+  
+  <!--/end  -->
+ 
+  <!-- facebook -->
+  <meta property="og:description" content="{{ movie }}, cast and crew, star cast, {{ movie.language }} movie {{ movie }} actor, actress, director, producer, {{ movie }} music director, singers, playback singers, movie news, crew members" />
+  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Cinema-Wiki of TCS, Infosys, Wipro, Accenture, IBM, CTS" />
+  <meta property="og:description" content="The biggest collection of placement papers. interview pattern of various companies such as TCS, Infosys, Wipro, Accenture, IBM, CTS etc. Fully solved placement papers with detailed explanations. Improve yourself for best results." />
+  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <!--/end  -->
+{% endblock %}
 {% block content %}
 	<div class="col-md-8">
           <!-- carousel -->
@@ -137,53 +160,43 @@ $(document).ready(function(){
   "@context": "http://schema.org",
   "@type": "Movie",
   "actor": [
+  {% for person in movie.team.all %}  
     {
       "@type": "Person",
-      "name": "Johnny Depp"
-    },
-    {
-      "@type": "Person",
-      "name": "Penelope Cruz"
-    },
-    {
-      "@type": "Person",
-      "name": "Ian McShane"
-    }
+      "name": "{{ person }}"
+    }{% if not forloop.last %},{% endif %}
+  {% endfor %}
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "bestRating": "10",
+    "bestRating": "5",
     "ratingCount": "200",
-    "ratingValue": "8",
+    "ratingValue": "{{ movie.rating }}",
     "reviewCount": "50"
   },
   "author": [
     {
       "@type": "Person",
-      "name": "Ted Elliott"
-    },
-    {
-      "@type": "Person",
-      "name": "Terry Rossio"
+      "name": "{{ movie.producer }}"
     }
   ],
-  "description": "Jack Sparrow and Barbossa embark on a quest to find the elusive fountain of youth, only to discover that Blackbeard and his daughter are after it too.",
+  "description": "{{ movie.about }}",
   "director": {
     "@type": "Person",
-    "name": "Rob Marshall"
+    "name": "{{ movie.director }}"
   },
-  "name": "Pirates of the Carribean: On Stranger Tides (2011)",
+  "name": "{{ movie }} - {{ movie.released_on }}",
   "image": {
     "@context": "http://schema.org",
     "@type": "ImageObject",
-    "author": "Jane Doe",
-    "contentLocation": "Puerto Vallarta, Mexico",
-    "url": "http://hello.com/mexico-beach.jpg",
-    "datePublished": "2008-01-25",
-    "description": "I took this picture while on vacation last year.",
-    "name": "Beach in Mexico"
+    "author": "{{ movie.producer }}",
+    "contentLocation": "{{ movie.location }}, {{ movie.country }}",
+    "url": "{{ movie.image }}",
+    "datePublished": "{{ movie.released_on|date:'Y-m-d' }}",
+    "description": "{{ movie.about|truncatechars:300 }}",
+    "name": "{{ movie }}"
   },
-  "dateCreated": "2008-01-25"
+  "dateCreated": "{{ movie.updated_on|date:'Y-m-d' }}"
 }
 </script>
 {% endblock %}

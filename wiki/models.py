@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from wiki.globals import MOVIE_GENRE, GENDER, AWARD_STATUS
+from wiki.utils import random_select
 
 
 class Person(models.Model):
@@ -23,7 +24,8 @@ class Person(models.Model):
         return ImageURL.objects.filter(person_id=self.id)
 
     def related_persons(self):
-        return self.__class__.objects.all()
+        persons = self.__class__.objects.all()
+        return random_select(persons)
 
     def get_absolute_url(self):
         return reverse("wiki:person", kwargs={"slug": self.slug})
@@ -41,9 +43,12 @@ class Movie(models.Model):
     budget = models.CharField(max_length=100, null=True, blank=True)
     box_office = models.CharField(max_length=100, null=True, blank=True)
     rating = models.CharField(max_length=100, null=True, blank=True)
-    rating = models.CharField(max_length=100, null=True, blank=True)
     genre = models.CharField(choices=MOVIE_GENRE, max_length=100, null=True, blank=True)
     updated_on = models.DateTimeField(default=timezone.now)
+    about = models.TextField(blank=True, null=True)
+    producer = models.CharField(max_length=50, blank=True, null=True)
+    director = models.CharField(max_length=50, blank=True, null=True)
+    location = models.CharField(max_length=50, blank=True, null=True)
     image = models.URLField()
     team = models.ManyToManyField(Person, related_name="movies")
 
@@ -51,7 +56,8 @@ class Movie(models.Model):
         return ImageURL.objects.filter(movie_id=self.id)
 
     def related_movies(self):
-        return self.__class__.objects.all()
+        related_movies = self.__class__.objects.exclude(id=self.id)
+        return random_select(related_movies)
 
     def get_absolute_url(self):
         return reverse("wiki:movie", kwargs={"slug": self.slug})
