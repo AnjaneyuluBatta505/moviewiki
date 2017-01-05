@@ -19,13 +19,15 @@ class Person(models.Model):
     nick_names = models.CharField(max_length=100, null=True, blank=True)
     role = models.CharField(max_length=100, null=True, blank=True)
     updated_on = models.DateTimeField(default=timezone.now)
+    # seo
+    description = models.TextField(null=True, blank=True)
 
     def images(self):
         return ImageURL.objects.filter(person_id=self.id)
 
-    def related_persons(self):
-        persons = self.__class__.objects.all()
-        return random_select(persons)
+    # def related_persons(self):
+        # persons = self.__class__.objects.all()
+        # return random_select(persons)
 
     def get_absolute_url(self):
         return reverse("wiki:person", kwargs={"slug": self.slug})

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} {{ movie }} Details | Star casting | Team {% endblock %}
 {% block seo_meta %}
   <meta name="keywords" content="{{ movie }}, cast and crew, star cast, {{ movie.language }} movie {{ movie }} actor, actress, director, producer, {{ movie }} music director, singers, playback singers, movie news, crew members">
@@ -17,8 +18,8 @@
   <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Cinema-Wiki of TCS, Infosys, Wipro, Accenture, IBM, CTS" />
-  <meta property="og:description" content="The biggest collection of placement papers. interview pattern of various companies such as TCS, Infosys, Wipro, Accenture, IBM, CTS etc. Fully solved placement papers with detailed explanations. Improve yourself for best results." />
+  <meta property="og:title" content="Cinema-Wiki" />
+  <meta name="description" content="{{ movie.about }}">
   <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <!--/end  -->
 {% endblock %}

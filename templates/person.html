@@ -1,6 +1,34 @@
 {% extends "base.html" %}
-{% block title %}{{ person.name|title }} involved movies | Biography | Awards & Nominations{% endblock %}
-{% block seo_meta %}{% endblock %}
+{% load static %}
+
+{% block title %}
+  {{ person.name|title }} involved movies | Biography | Awards & Nominations
+{% endblock %}
+
+{% block seo_meta %}
+  <meta name="keywords" content="{{ person.name }}, biography, fact file, photo gallery, wallpapers, videos, news, movie stills, images, pictures, pics, filmography, awards, polls, quiz, movies, film, cinema,  movie, cast, updates, celebrity, upcoming movies, latest flicks, interview, candid, gossips, rumors, internet movie database, review">
+  <meta name="description" content="{{ person.description }}">
+  <meta name="title" content="Cinema-Wiki">
+
+  <!-- twitter -->
+  <meta name="twitter:card" content="Cinema-Wiki" />
+  <meta name="twitter:site" content="@CinemaWiki" />
+  <meta name="twitter:creator" content="@CinemaWiki" />
+  
+  <!--/end  -->
+ 
+  <!-- facebook -->
+  <meta property="og:description" content="{{ person.name }}, biography, fact file, photo gallery, wallpapers, videos, news, movie stills, images, pictures, pics, filmography, awards, polls, quiz, movies, film, cinema,  movie, cast, updates, celebrity, upcoming movies, latest flicks, interview, candid, gossips, rumors, internet movie database, review">
+  <meta name="description" content="{{ person.description }}" />
+  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Cinema-Wiki" />
+  <meta name="description" content="{{ person.description }}">
+  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <!--/end  -->
+{% endblock %}
+
 {% block content %}
 <div class="col-md-8">
   <!-- carousel -->
@@ -106,14 +134,14 @@
     		<h5>Actors Related to {{ person }} </h5>
     	</div>
     	<div class="movie-team">
-      {% for rperson in person.related_persons %}
+      {% for person in person.related_persons %}
         <!-- movie -->
         <div class="song-effect">
           <figure class="team-member">
             <a href="{% url 'wiki:person' slug=rperson.slug %}"><img src="{{ rperson.image }}" alt="{{ rperson }} movies awards & biography"></a>
             <figcaption class="view-caption">
               <div class="info">
-                <p><a href="{%url 'wiki:person' slug=rperson.slug %}">View {{ rperson }} Profile</a></p>
+                <p><a href="{%url 'wiki:person' slug=rperson.slug %}">View {{ person }} Profile</a></p>
               </div>
             </figcaption>            
           </figure>
@@ -136,18 +164,18 @@ $(document).ready(function(){
 {
   "@context": "http://schema.org",
   "@type": "Person",
-  "description": "Jack Sparrow and Barbossa embark on a quest to find the elusive fountain of youth, only to discover that Blackbeard and his daughter are after it too.",
-  "jobTitle": "Actor",
-  "gender": "male",
-  "height": "6 feet 3 inches",
-  "birthDate": "2016-11-12",
-  "name": "Pirates of the Carribean: On Stranger Tides (2011)",
+  "description": "{{ person.description }}",
+  "jobTitle": "{{ person.role }}",
+  "gender": "{{ person.gender }}",
+  "height": "{{ person.height }}",
+  "birthDate": "{{ person.dob|date:'Y-m-d' }}",
+  "name": "{{ person.name }}",
   "image": {
     "@context": "http://schema.org",
     "@type": "ImageObject",
-    "url": "http://hello.com/mexico-beach.jpg",
-    "description": "I took this picture while on vacation last year.",
-    "name": "Beach in Mexico"
+    "url": "{{ person.image }}",
+    "description": "{{ person.description }}",
+    "name": "{{ person.name }}"
   }
 }
 </script>
