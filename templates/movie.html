@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %} {{ movie }} Details | Star casting | Team {% endblock %}
+
 {% block seo_meta %}
   <meta name="keywords" content="{{ movie }}, cast and crew, star cast, {{ movie.language }} movie {{ movie }} actor, actress, director, producer, {{ movie }} music director, singers, playback singers, movie news, crew members">
   <meta name="description" content="{{ movie.about }}">
@@ -23,6 +24,7 @@
   <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <!--/end  -->
 {% endblock %}
+
 {% block content %}
 	<div class="col-md-8">
           <!-- carousel -->
