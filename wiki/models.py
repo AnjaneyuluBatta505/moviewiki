@@ -81,6 +81,11 @@ class Song(models.Model):
     movie = models.ForeignKey(Movie, null=True, blank=True, related_name="related_songs")
     updated_on = models.DateTimeField(default=timezone.now)
     image = models.URLField()
+    # seo
+    description = models.CharField(max_length=100, null=True, blank=True)
+
+    def get_related_songs(self):
+        return self.__class__.objects.exclude(id=self.id)
 
     def get_absolute_url(self):
         return reverse("wiki:song", kwargs={"slug": self.slug, "movie_slug": self.movie.slug})

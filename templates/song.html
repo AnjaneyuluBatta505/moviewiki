@@ -1,4 +1,28 @@
 {% extends "base.html" %}
+{% load static %}
+{% block seo_meta %}
+  <meta name="keywords" content="{{ song.title }} lyrics from {{ song.movie }} songs. {% for md in song.music_directors.all %} {{md}}, {% endfor%} composed music with lyrics by {% for writers in song.writers.all %} {{writers}}, {% endfor%}.">
+  <meta name="description" content="{{ song.description }}">
+  <meta name="title" content="Cinema-Wiki">
+
+  <!-- twitter -->
+  <meta name="twitter:card" content="Cinema-Wiki" />
+  <meta name="twitter:site" content="@CinemaWiki" />
+  <meta name="twitter:creator" content="@CinemaWiki" />
+  
+  <!--/end  -->
+ 
+  <!-- facebook -->
+  <meta property="og:description" content="{{ song.description }}" />
+  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Cinema-Wiki" />
+  <meta name="description" content="{{ song.description }}">
+  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <!--/end  -->
+{% endblock %}
+
 {% block content %}
 <div class="col-md-8">
   <div class="col-md-12 song-image">
@@ -27,8 +51,8 @@
         <tr>
           <th> Singers </th>
           <td>
-            {% for md in song.music_directors.all %}
-              <a>{{ md }}<a> {% if not forloop.last%},{% endif %}
+            {% for md in song.singers.all %}
+              <a>{{ md }}</a> {% if not forloop.last%},{% endif %}
             {% endfor %}
           </td>
         </tr>
@@ -36,7 +60,7 @@
           <th> Lyrics </th>
           <td>
             {% for writer in song.writers.all %}
-              <a>{{ writer }}<a> {% if not forloop.last%},{% endif %}
+              <a>{{ writer }}</a> {% if not forloop.last%},{% endif %}
             {% endfor %}
           </td>
         </tr>
@@ -56,8 +80,7 @@
       <h3>Other Songs in {{ song.movie }}</h3>
     </div>
     <div class="movie-team">
-    {% for msong in song.movie.related_songs.all %}
-      {% if not msong == song %}  
+    {% for msong in song.movie.get_related_songs %}
       <!-- song -->
       <div class="song-effect">
         <figure class="team-member">
@@ -69,7 +92,6 @@
           </figcaption>            
         </figure>
       </div>
-      {% endif %}
     {% endfor %}
     </div>
   </div>
@@ -81,47 +103,35 @@
 {
     "@context": "http://schema.org",
     "@type": "MusicGroup",
-    "name": "mamathala talli",
-    "description": "mamathala talli mana bahubali....",
+    "name": "{{ song.title }}",
+    "description": "{{ song.description }}",
     "genre": "Rock",
     "album": {
         "@type": "MusicAlbum",
-        "name": "Bahubali the beginning",
-        "alternateName": "Bahubali the beginning"
+        "name": "{{ song.movie }}",
+        "alternateName": "{{ song.movie }}"
     },
     "member": [
+      {% for music_director in song.music_directors.all %}
       {
         "@type": "OrganizationRole",
         "member": {
           "@type": "Person",
-          "name": "John Lennon"
+          "name": "{{ music_director }}"
         },
-        "roleName": ["singer", "director"]
+        "roleName": ["director"]
       },
+      {% endfor %}
+      {% for singer in song.singers.all %}
       {
         "@type": "OrganizationRole",
         "member": {
           "@type": "Person",
-          "name": "John Lennon"
+          "name": "{{ singer }}"
         },
-        "roleName": ["singer", "director"]
-      },
-      {
-        "@type": "OrganizationRole",
-        "member": {
-          "@type": "Person",
-          "name": "John Lennon"
-        },
-        "roleName": ["singer", "director"]
-      },
-      {
-        "@type": "OrganizationRole",
-        "member": {
-          "@type": "Person",
-          "name": "John Lennon"
-        },
-        "roleName": ["singer", "director"]
-      }
+        "roleName": ["singer"]
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
     ]
 }
 </script>
