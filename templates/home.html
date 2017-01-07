@@ -5,7 +5,7 @@
       <!-- movie -->
       <div class="col-md-4 movie">
         <a href="{% url 'wiki:movie' slug=movie.slug %}">
-        <img src="{{ movie.image }}"></a>
+        <img src="{{ movie.image }}" alt="{{ movie }}"></a>
       </div>
     {% endfor %}
       <!-- Load More -->

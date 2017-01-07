@@ -80,14 +80,14 @@
       <h3>Other Songs in {{ song.movie }}</h3>
     </div>
     <div class="movie-team">
-    {% for msong in song.movie.get_related_songs %}
+    {% for msong in song.get_related_songs %}
       <!-- song -->
       <div class="song-effect">
         <figure class="team-member">
-          <a href="#"><img src="{{ msong.image }}" alt="{{ msong }} song in {{ song.movie }}"></a>
+          <a href="{{ msong.get_absolute_url }}"><img src="{{ msong.image }}" alt="{{ msong }} song in {{ msong.movie }}"></a>
           <figcaption class="view-caption">
             <div class="info">
-              <p><a>View Song</a></p>
+              <p><a href="{{ msong.get_absolute_url }}">View {{ msong }} Song</a></p>
             </div>
           </figcaption>            
         </figure>

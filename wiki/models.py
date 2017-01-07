@@ -25,9 +25,9 @@ class Person(models.Model):
     def images(self):
         return ImageURL.objects.filter(person_id=self.id)
 
-    # def related_persons(self):
-        # persons = self.__class__.objects.all()
-        # return random_select(persons)
+    def related_persons(self):
+        persons = self.__class__.objects.exclude(id=self.id)
+        return random_select(persons)
 
     def get_absolute_url(self):
         return reverse("wiki:person", kwargs={"slug": self.slug})
@@ -85,7 +85,10 @@ class Song(models.Model):
     description = models.CharField(max_length=100, null=True, blank=True)
 
     def get_related_songs(self):
-        return self.__class__.objects.exclude(id=self.id)
+        try:
+            return self.movie.related_songs.exclude(id=self.id)
+        except Exception:
+            return []
 
     def get_absolute_url(self):
         return reverse("wiki:song", kwargs={"slug": self.slug, "movie_slug": self.movie.slug})
