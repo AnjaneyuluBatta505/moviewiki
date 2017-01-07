@@ -121,3 +121,6 @@ class ImageURL(models.Model):
 
     def __str__(self):
         return self.url
+
+    class Meta:
+        ordering = ["id"]
