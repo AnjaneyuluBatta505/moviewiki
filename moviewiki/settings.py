@@ -134,3 +134,4 @@ if not DEBUG:
     DATABASES['default'] = dj_database_url.config()
 
 HTML_MINIFY = True
+WHITENOISE_MAX_AGE = 86400
