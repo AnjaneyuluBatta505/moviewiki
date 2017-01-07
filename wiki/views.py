@@ -117,3 +117,14 @@ class BingSiteVerificationView(TemplateView):
     template_name = "BingSiteAuth.xml"
     content_type = "application/xml"
 
+
+def handler404(request):
+    response = render('404.html')
+    response.status_code = 404
+    return response
+
+
+def handler500(request):
+    response = render('500.html')
+    response.status_code = 500
+    return response
