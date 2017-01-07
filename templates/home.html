@@ -20,18 +20,19 @@
 
 {% block javascript %}
 <script type="text/javascript">
+  pend = parseInt($("#load_more").attr("pend"));
+  current = parseInt($("#load_more").attr("pcurrent"))
   $("#load_more").click(function(e){
     $this = $(this);
     e.preventDefault();
-    pend = parseInt($(this).attr("pend"));
-    current = parseInt($(this).attr("pcurrent"))
     $.get($(this).attr("href"), function(response){
       $this.closest("div").before(response);
       s = $this.attr("href")
       s = s.replace(s.substring(s.indexOf("=")+1, s.length), current+1); 
       $this.attr("href", s);
-      $(this).attr("pcurrent", current+1);
-      if(current == pend){
+      current = current + 1
+      $(this).attr("pcurrent", current);
+      if(current >= pend){
         $this.closest("div").hide();
       }
     })

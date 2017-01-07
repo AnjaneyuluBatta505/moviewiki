@@ -1,14 +1,16 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
+
+from django.db.models import Q
+
 from wiki.models import Person, Movie, Song
-# Create your views here.
 
 
 class HomeView(ListView):
     template_name = "home.html"
     model = Movie
-    paginate_by = 1
+    paginate_by = 10
 
     def get_template_names(self):
         if self.request.is_ajax():
@@ -16,9 +18,40 @@ class HomeView(ListView):
         return super(HomeView, self).get_template_names()
 
 
-class SearchView(ListView):
+class SearchView(TemplateView):
     template_name = "search.html"
     model = Movie
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        persons = Person.objects.all()
+        movies = Movie.objects.all()
+        songs = Song.objects.all()
+        query = self.request.GET.get("query")
+        if query:
+            query_list = query.split()
+            persons_query = None
+            for word in query_list:
+               q_aux = Q(name__icontains=word)|Q(nick_names__icontains=word)
+               persons_query = ( q_aux & persons_query ) if bool( persons_query ) else q_aux
+            movies_query = None
+            for word in query_list:
+               q_aux = Q(title__icontains=word)|Q(language__icontains=word)|Q(producer__icontains=word)|Q(director__icontains=word)
+               movies_query = ( q_aux & movies_query ) if bool( movies_query ) else q_aux
+            songs_query = None
+            for word in query_list:
+               q_aux = Q(title__icontains=word)|Q(lyrics__icontains=word)|Q(description__icontains=word)
+               songs_query = ( q_aux & songs_query ) if bool( songs_query ) else q_aux
+            persons = persons.filter(persons_query)
+            movies = movies.filter(movies_query)
+            songs = songs.filter(songs_query)
+        context.update({
+            "persons": persons[:150],
+            "movies": movies[:150],
+            "songs": songs[:150]
+        })
+        return context
+
 
 
 class MovieView(DetailView):

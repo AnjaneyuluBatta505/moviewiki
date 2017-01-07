@@ -63,7 +63,7 @@
           <a class="navbar-brand" href="/">CinemaWiki</a>
         </div>
         <div class="col-md-10">
-          <form class="search-bar">
+          <form action="{% url 'wiki:search' %}" class="search-bar" method="get">
               <input type="text" name="query" placeholder="serach for movies, actors, songs, technicians, etc. " required class="search">
               <button type="submit">Go</button>
             </form>
