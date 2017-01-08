@@ -6,31 +6,51 @@
     <div class="col-md-12"><h3>Movies related to search</h3></div>
     {% for movie in movies %}
       <!-- movie -->
-      <div class="col-md-4 movie">
-        <a href="{% url 'wiki:movie' slug=movie.slug %}">
-        <img src="{{ movie.image }}"></a>
+      <div class="song-effect">
+        <figure class="team-member">
+          <a href="{%url 'wiki:movie' slug=rmovie.slug %}">
+            <img src="{{ rmovie.image }}" alt="{{ rmovie }} movie details & team">
+          </a>
+          <figcaption class="view-caption">
+            <div class="info">
+              <p><a href="{%url 'wiki:movie' slug=rmovie.slug %}">View Movie {{ rmovie }}</a></p>
+            </div>
+          </figcaption>            
+        </figure>
       </div>
     {% endfor %}
   {% endif %}
 
   {% if persons %}
     <div class="col-md-12"><h3>People related to search</h3></div>
-    {% for person in persons %}
+    {% for rperson in persons %}
       <!-- movie -->
-      <div class="col-md-4 movie">
-        <a href="{% url 'wiki:person' slug=person.slug %}">
-        <img src="{{ person.image }}"></a>
-      </div>
+        <div class="song-effect">
+          <figure class="team-member">
+            <a href="{% url 'wiki:person' slug=rperson.slug %}"><img src="{{ rperson.image }}" alt="{{ rperson }} movies awards & biography"></a>
+            <figcaption class="view-caption">
+              <div class="info">
+                <p><a href="{%url 'wiki:person' slug=rperson.slug %}">View {{ rperson }} Profile</a></p>
+              </div>
+            </figcaption>            
+          </figure>
+        </div>
     {% endfor %}
   {% endif %}
 
   {% if songs %}
     <div class="col-md-12"><h3>Songs related to search</h3></div>
-    {% for song in songs %}
-      <!-- movie -->
-      <div class="col-md-4 movie">
-        <a href="{% url 'wiki:song' slug=song.slug movie_slug=song.movie.slug %}">
-        <img src="{{ song.image }}"></a>
+    {% for msong in songs %}
+      <!-- song -->
+      <div class="song-effect">
+        <figure class="team-member">
+          <a href="{{ msong.get_absolute_url }}"><img src="{{ msong.image }}" alt="{{ msong }} song in {{ msong.movie }}"></a>
+          <figcaption class="view-caption">
+            <div class="info">
+              <p><a href="{{ msong.get_absolute_url }}">View {{ msong }} Song</a></p>
+            </div>
+          </figcaption>            
+        </figure>
       </div>
     {% endfor %}
   {% endif %}

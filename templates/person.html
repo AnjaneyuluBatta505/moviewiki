@@ -134,14 +134,14 @@
     		<h5>Actors Related to {{ person }} </h5>
     	</div>
     	<div class="movie-team">
-      {% for person in person.related_persons %}
+      {% for rperson in person.related_persons %}
         <!-- movie -->
         <div class="song-effect">
           <figure class="team-member">
             <a href="{% url 'wiki:person' slug=rperson.slug %}"><img src="{{ rperson.image }}" alt="{{ rperson }} movies awards & biography"></a>
             <figcaption class="view-caption">
               <div class="info">
-                <p><a href="{%url 'wiki:person' slug=rperson.slug %}">View {{ person }} Profile</a></p>
+                <p><a href="{%url 'wiki:person' slug=rperson.slug %}">View {{ rperson }} Profile</a></p>
               </div>
             </figcaption>            
           </figure>
