@@ -65,27 +65,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'moviewiki.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-if not DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'do20lc3jghogg',
-            'USER': 'piyhmusixzjwhr',
-            'PASSWORD': '5FUjmfnY8btrHG0jMLainNWdWx',
-            'HOST': 'ec2-54-83-59-110.compute-1.amazonaws.com',
-            'PORT': '5432',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'mydatabase',
-        }
-    }
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -120,6 +99,27 @@ USE_TZ = True
 
 APPEND_SLASH = False
 
+
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+if not DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'do20lc3jghogg',
+            'USER': 'piyhmusixzjwhr',
+            'PASSWORD': '5FUjmfnY8btrHG0jMLainNWdWx',
+            'HOST': 'ec2-54-83-59-110.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mydatabase',
+        }
+    }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 ]
 
 if not DEBUG:
-    DATABASES['default'] = dj_database_url.config()
-
+    DATABASES['default'] = dj_database_url.config()    
+DEBUG = True
 HTML_MINIFY = True
 WHITENOISE_MAX_AGE = 86400
