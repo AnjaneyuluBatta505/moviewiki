@@ -3,8 +3,9 @@
 {% block content %}
   <div class="col-md-8 movies search">
   {% if movies %}
+    <div class="col-md-12">
     <div class="col-md-12"><h3>Movies related to search</h3></div>
-    {% for movie in movies %}
+    {% for rmovie in movies %}
       <!-- movie -->
       <div class="song-effect">
         <figure class="team-member">
@@ -19,9 +20,11 @@
         </figure>
       </div>
     {% endfor %}
+    </div>
   {% endif %}
 
   {% if persons %}
+  <div class="col-md-12">
     <div class="col-md-12"><h3>People related to search</h3></div>
     {% for rperson in persons %}
       <!-- movie -->
@@ -36,9 +39,11 @@
           </figure>
         </div>
     {% endfor %}
+  </div>
   {% endif %}
 
   {% if songs %}
+  <div class="col-md-12">
     <div class="col-md-12"><h3>Songs related to search</h3></div>
     {% for msong in songs %}
       <!-- song -->
@@ -53,6 +58,7 @@
         </figure>
       </div>
     {% endfor %}
+  </div>
   {% endif %}
   {% if not movies and not  persons and not songs %}
   <!-- error mesage -->
