@@ -27,31 +27,31 @@
         <loc>http://{{ request.get_host }}{{ person.get_absolute_url }}</loc>
         <lastmod>{% now "Y-m-d" %}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1</priority>
+        <priority>0.5</priority>
    </url>    
         {% endfor %}
    <url>
         <loc>http://{{ request.get_host }}{% url 'wiki:privacy_policy' %}</loc>
         <lastmod>{% now "Y-m-d" %}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1</priority>
+        <priority>0.5</priority>
    </url>
    <url>
         <loc>http://{{ request.get_host }}{% url 'wiki:terms_conditions' %}</loc>
         <lastmod>{% now "Y-m-d" %}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1</priority>
+        <priority>0.5</priority>
    </url>
    <url>
         <loc>http://{{ request.get_host }}{% url 'wiki:contact_us' %}</loc>
         <lastmod>{% now "Y-m-d" %}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1</priority>
+        <priority>0.5</priority>
    </url>
    <url>
         <loc>http://{{ request.get_host }}{% url 'wiki:about_us' %}</loc>
         <lastmod>{% now "Y-m-d" %}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1</priority>
+        <priority>0.5</priority>
     </url>
 </urlset>
