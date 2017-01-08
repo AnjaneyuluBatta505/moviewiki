@@ -99,23 +99,10 @@ USE_TZ = True
 
 APPEND_SLASH = False
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
-if not DEBUG:
-    DATABASES['default'] = dj_database_url.config()
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 if not DEBUG:
-    DEBUG = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -133,7 +120,18 @@ else:
             'NAME': 'mydatabase',
         }
     }
-    
-    
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+if not DEBUG:
+    DATABASES['default'] = dj_database_url.config()    
+DEBUG = True
 HTML_MINIFY = True
 WHITENOISE_MAX_AGE = 86400
