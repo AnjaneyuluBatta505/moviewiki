@@ -44,7 +44,7 @@
           <th> Music Director </th>
           <td>
             {% for md in song.music_directors.all %}
-            <a>{{ md }}</a>{% if not forloop.last%},{% endif %}
+            <a>{{ md }}</a>{% if not forloop.last %},{% endif %}
             {% endfor %}
           </td>
         </tr>

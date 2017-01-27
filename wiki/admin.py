@@ -54,7 +54,7 @@ class MovieAdmin(admin.ModelAdmin):
 
 class SongAdmin(admin.ModelAdmin):
     list_display = ('title',)
-    search_fields = ['title', 'music_director', 'singers', 'writers', 'lyrics', 'movie']
+    search_fields = ['title', 'music_directors', 'singers', 'writers', 'lyrics', 'movie']
     list_filter = ('title', 'writers', 'singers')
     ordering = ('updated_on',)
     exclude = ("updated_on",)

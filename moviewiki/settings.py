@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=w9cd+v^=+pg3tq3m!jje31=71ha-%rg*nx%0smadr5-pilobm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cinema-wiki.herokuapp.com']
 
@@ -116,8 +116,12 @@ if not DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'mydatabase',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'moviewiki',
+            'USER': 'postgres',
+            'PASSWORD': 'root',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
         }
     }
 # Static files (CSS, JavaScript, Images)

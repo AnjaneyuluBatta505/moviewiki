@@ -51,7 +51,7 @@ class Movie(models.Model):
     producer = models.CharField(max_length=50, blank=True, null=True)
     director = models.CharField(max_length=50, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
-    image = models.URLField()
+    image = models.URLField(null=True, blank=True)
     team = models.ManyToManyField(Person, related_name="movies")
 
     def images(self):
@@ -74,13 +74,13 @@ class Movie(models.Model):
 class Song(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=80, unique=True)
-    music_directors = models.ManyToManyField(Person, blank=True, null=True, related_name="songs"),
+    music_directors = models.ManyToManyField(Person, blank=True, null=True, related_name="songs")
     singers = models.ManyToManyField(Person, blank=True, related_name="all_songs")
     writers = models.ManyToManyField(Person, blank=True, null=True, related_name="get_songs")
     lyrics = models.TextField(null=True, blank=True)
     movie = models.ForeignKey(Movie, null=True, blank=True, related_name="related_songs")
     updated_on = models.DateTimeField(default=timezone.now)
-    image = models.URLField()
+    image = models.URLField(null=True, blank=True)
     # seo
     description = models.CharField(max_length=100, null=True, blank=True)
 
@@ -106,7 +106,7 @@ class Award(models.Model):
     status = models.CharField(choices=AWARD_STATUS, max_length=50)
     awardee = models.ForeignKey(Person, null=True, blank=True, related_name="awards")
     updated_on = models.DateTimeField(default=timezone.now)
-    image = models.URLField()
+    image = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.title
