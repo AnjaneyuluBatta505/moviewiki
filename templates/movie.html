@@ -4,7 +4,7 @@
 
 {% block seo_meta %}
   <meta name="keywords" content="{{ movie }}, cast and crew, star cast, {{ movie.language }} movie {{ movie }} actor, actress, director, producer, {{ movie }} music director, singers, playback singers, movie news, crew members">
-  <meta name="description" content="{{ movie.about }}">
+  <meta name="description" content="{{ movie.about|striptags }}">
   <meta name="title" content="Cinema-Wiki">
 
   <!-- twitter -->
@@ -20,7 +20,7 @@
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Cinema-Wiki" />
-  <meta name="description" content="{{ movie.about }}">
+  <meta name="description" content="{{ movie.about|striptags }}">
   <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <!--/end  -->
 {% endblock %}
@@ -183,7 +183,7 @@ $(document).ready(function(){
       "name": "{{ movie.producer }}"
     }
   ],
-  "description": "{{ movie.about }}",
+  "description": "{{ movie.about|striptags }}",
   "director": {
     "@type": "Person",
     "name": "{{ movie.director }}"
@@ -196,10 +196,41 @@ $(document).ready(function(){
     "contentLocation": "{{ movie.location }}, {{ movie.country }}",
     "url": "{{ movie.image }}",
     "datePublished": "{{ movie.released_on|date:'Y-m-d' }}",
-    "description": "{{ movie.about|truncatechars:300 }}",
+    "description": "{{ movie.about|striptags|truncatechars:300 }}",
     "name": "{{ movie }}"
   },
   "dateCreated": "{{ movie.updated_on|date:'Y-m-d' }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}",
+      "name": "Cinema-Wiki",
+      "image": "{{ movie.image }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}{{ movie.get_absolute_url }}",
+      "name": "Movie",
+      "image": "{{ movie.image }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "{{ request.build_absolute_uri }}",
+      "name": "{{ movie }}",
+      "image": "{{ movie.image }}"
+    }
+  }]
 }
 </script>
 {% endblock %}

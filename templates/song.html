@@ -2,7 +2,7 @@
 {% load static %}
 {% block seo_meta %}
   <meta name="keywords" content="{{ song.title }} lyrics from {{ song.movie }} songs. {% for md in song.music_directors.all %} {{md}}, {% endfor%} composed music with lyrics by {% for writers in song.writers.all %} {{writers}}, {% endfor%}.">
-  <meta name="description" content="{{ song.description }}">
+  <meta name="description" content="{{ song.description|safe }}">
   <meta name="title" content="Cinema-Wiki">
 
   <!-- twitter -->
@@ -13,13 +13,13 @@
   <!--/end  -->
  
   <!-- facebook -->
-  <meta property="og:description" content="{{ song.description }}" />
-  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta property="og:description" content="{{ song.description|safe }}" />
+  <meta property="og:image" content="//{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Cinema-Wiki" />
-  <meta name="description" content="{{ song.description }}">
-  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta name="description" content="{{ song.description|safe }}">
+  <meta property="og:image" content="//{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <!--/end  -->
 {% endblock %}
 
@@ -104,7 +104,7 @@
     "@context": "http://schema.org",
     "@type": "MusicGroup",
     "name": "{{ song.title }}",
-    "description": "{{ song.description }}",
+    "description": "{{ song.description|striptags }}",
     "genre": "Rock",
     "album": {
         "@type": "MusicAlbum",
@@ -133,6 +133,37 @@
       }{% if not forloop.last %},{% endif %}
       {% endfor %}
     ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}",
+      "name": "Cinema-Wiki",
+      "image": "{{ song.image }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}{{ song.movie.get_absolute_url }}",
+      "name": "{{ song.movie }}",
+      "image": "{{ song.movie.image }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "{{ request.build_absolute_uri }}",
+      "name": "{{ song }}",
+      "image": "{{ song.image }}"
+    }
+  }]
 }
 </script>
 {% endblock %}

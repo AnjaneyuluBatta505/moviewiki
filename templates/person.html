@@ -7,7 +7,7 @@
 
 {% block seo_meta %}
   <meta name="keywords" content="{{ person.name }}, biography, fact file, photo gallery, wallpapers, videos, news, movie stills, images, pictures, pics, filmography, awards, polls, quiz, movies, film, cinema,  movie, cast, updates, celebrity, upcoming movies, latest flicks, interview, candid, gossips, rumors, internet movie database, review">
-  <meta name="description" content="{{ person.description }}">
+  <meta name="description" content="{{ person.description|striptags }}">
   <meta name="title" content="Cinema-Wiki">
 
   <!-- twitter -->
@@ -19,13 +19,13 @@
  
   <!-- facebook -->
   <meta property="og:description" content="{{ person.name }}, biography, fact file, photo gallery, wallpapers, videos, news, movie stills, images, pictures, pics, filmography, awards, polls, quiz, movies, film, cinema,  movie, cast, updates, celebrity, upcoming movies, latest flicks, interview, candid, gossips, rumors, internet movie database, review">
-  <meta name="description" content="{{ person.description }}" />
-  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta name="description" content="{{ person.description|striptags }}" />
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Cinema-Wiki" />
-  <meta name="description" content="{{ person.description }}">
-  <meta property="og:image" content="{{ request.get_host }}{%static 'images/favicon.ico' %}" />
+  <meta name="description" content="{{ person.description|striptags }}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{%static 'images/favicon.ico' %}" />
   <!--/end  -->
 {% endblock %}
 
@@ -164,7 +164,7 @@ $(document).ready(function(){
 {
   "@context": "http://schema.org",
   "@type": "Person",
-  "description": "{{ person.description }}",
+  "description": "{{ person.description|striptags }}",
   "jobTitle": "{{ person.role }}",
   "gender": "{{ person.gender }}",
   "height": "{{ person.height }}",
@@ -174,9 +174,40 @@ $(document).ready(function(){
     "@context": "http://schema.org",
     "@type": "ImageObject",
     "url": "{{ person.image }}",
-    "description": "{{ person.description }}",
+    "description": "{{ person.description|striptags }}",
     "name": "{{ person.name }}"
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}",
+      "name": "Cinema-Wiki",
+      "image": "{{ person.image }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}{{ person.get_absolute_url }}",
+      "name": "{{ person.role }}",
+      "image": "{{ person.image }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}{{ person.get_absolute_url }}",
+      "name": "{{ person }}",
+      "image": "{{ person.image }}"
+    }
+  }]
 }
 </script>
 {% endblock %}
