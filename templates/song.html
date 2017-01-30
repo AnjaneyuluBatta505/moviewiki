@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %}
+  {{ song.title }} lyrics, Audio, {{ song.movie }} songs.
+{% endblock %}
+
 {% block seo_meta %}
   <meta name="keywords" content="{{ song.title }} lyrics from {{ song.movie }} songs. {% for md in song.music_directors.all %} {{md}}, {% endfor%} composed music with lyrics by {% for writers in song.writers.all %} {{writers}}, {% endfor%}.">
   <meta name="description" content="{{ song.description|safe }}">
