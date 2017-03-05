@@ -10,7 +10,7 @@ from wiki.models import Person, Movie, Song
 class HomeView(ListView):
     template_name = "home.html"
     model = Movie
-    paginate_by = 10
+    paginate_by = 50
 
     def get_template_names(self):
         if self.request.is_ajax():

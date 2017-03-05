@@ -213,6 +213,7 @@ a.btn:hover{
 }
 .song-effect .team-member:hover .view-caption{
   display: block;
+  height: 52%;
 }
 /* song */
 .song-image {

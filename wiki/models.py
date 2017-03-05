@@ -37,7 +37,7 @@ class Person(models.Model):
 
 
 class Movie(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, null=True, blank=True)
     slug = models.SlugField(max_length=80, unique=True)
     released_on = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
@@ -52,7 +52,7 @@ class Movie(models.Model):
     director = models.CharField(max_length=50, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
     image = models.URLField(null=True, blank=True)
-    team = models.ManyToManyField(Person, related_name="movies")
+    team = models.ManyToManyField(Person, related_name="movies", blank=True)
 
     def images(self):
         return ImageURL.objects.filter(movie_id=self.id)
@@ -68,7 +68,7 @@ class Movie(models.Model):
         return self.title
 
     class Meta:
-        ordering = ('released_on',)
+        ordering = ('-released_on',)
 
 
 class Song(models.Model):

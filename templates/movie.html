@@ -56,7 +56,7 @@
                   <th>Title</th>
                   <td>{{ movie|title }}</td>
                   <th>Realsed On</th>
-                  <td>{{ movie.released_on }}</td>
+                  <td>{{ movie.released_on|date:"Y" }}</td>
                 </tr>
                 <tr>
                   <th>Language</th>
@@ -113,7 +113,7 @@
           		<!-- song -->
           		<div class="song-effect">
 	              <figure class="team-member">
-	                <a href="{% url 'wiki:song' slug=song.slug movie_slug=movie.slug %}"><img src="{{ song.image }}" alt="{{ song }} song in movie }}"></a>
+	                <a href="{% url 'wiki:song' slug=song.slug movie_slug=movie.slug %}"><img src="{{ song.image }}" alt="{{ song }} song in {{ movie }}"></a>
 	                <figcaption class="view-caption">
 	                  <div class="info">
 	                    <p><a href="{% url 'wiki:song' slug=song.slug movie_slug=movie.slug %}">View {{ song }} Song</a></p>
